@@ -28,7 +28,8 @@ Not built yet: landing page and sandbox; trial sign-up and download flow; finish
 1. DONE: licence checks wired into `agent/server.py` (402 until a valid certificate), License panel, bound to 127.0.0.1:8765. Run with `python -m agent.server`.
 2. DONE: keypair generated 27 Nov 2026. Public key embedded in `agent/license_guard.py`. Private key lives only on Ben's PC at `D:\GeminiSpace\antSTRONG\keys\` (gitignored) and must be backed up offline.
 3. Benchmark: DONE 27 Nov 2026. 652,000 synthetic records (2,000 clients) took 8.2 to 8.7s end to end on a 2-core cloud machine, after fixing a privacy-gate slowdown (it was over 10 minutes: the gate searched the whole payload once per known name). Re-run on Ben's PC with `python -m tools.make_benchmark_data bench-data` then `python -m tools.benchmark bench-data` before publishing any speed figure. Until then the landing page says "hundreds of thousands of records in seconds".
-3b. Next: build the landing page and demo with only claims that are true.
+3b. Demo: DONE 27 Nov 2026. `demo/index.html` is the real dashboard with the real engine's output for a fictional 8-client MSP (`demo/drop/`, made by `tools/make_demo_data.py`). Published privately as an artifact: https://claude.ai/artifact/S9a37QR8fzvf1W3xH8A3Fv (Ben shares it when ready).
+3c. Next: landing page that embeds or links the demo, with only true claims.
 4. Finish the email and launch copy.
 
 ## Working on this project

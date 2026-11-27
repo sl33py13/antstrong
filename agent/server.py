@@ -111,8 +111,8 @@ def dashboard_ui():
     .brand h1 { margin: 0; font-size: 1.5rem; letter-spacing: -0.02em; }
     .brand span { color: var(--accent); }
     .brand p { margin: 4px 0 0; color: var(--muted); font-size: 0.9rem; }
-    .controls { display: flex; align-items: center; gap: 12px; }
-    .badge { padding: 6px 12px; border-radius: 999px; font-size: 0.8rem; font-weight: 600; background: rgba(34,197,94,0.15); color: var(--green); border: 1px solid rgba(34,197,94,0.35); }
+    .controls { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+    .badge { white-space: nowrap; padding: 6px 12px; border-radius: 999px; font-size: 0.8rem; font-weight: 600; background: rgba(34,197,94,0.15); color: var(--green); border: 1px solid rgba(34,197,94,0.35); }
     .toggle-btn { background: var(--card); color: var(--text); border: 1px solid var(--accent); padding: 8px 14px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.85rem; }
     .toggle-btn.cloud-mode { border-color: var(--amber); color: var(--amber); }
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px; margin-bottom: 24px; }
@@ -239,7 +239,8 @@ def dashboard_ui():
     }
 
     function fmtMoney(n) {
-      return "$" + Number(n).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      const v = Number(n);
+      return (v < 0 ? "-$" : "$") + Math.abs(v).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     }
 
     function toggleView() {

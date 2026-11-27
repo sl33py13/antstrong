@@ -1,0 +1,102 @@
+ticket_id,company_id,company_name,tech_id,tech_name,summary,sla_met,status
+T0000,C01,Harbour Legal Group,U01,Liam Vance,New starter onboarding,True,closed
+T0001,C01,Harbour Legal Group,U01,Liam Vance,DNS resolution failing at branch,True,open
+T0002,C01,Harbour Legal Group,U02,Maya Lin,Laptop BSOD after dock firmware,True,open
+T0003,C01,Harbour Legal Group,U02,Maya Lin,Windows Update patch reboot loop,True,open
+T0004,C01,Harbour Legal Group,U01,Liam Vance,User locked out of M365 after MFA reset,True,closed
+T0005,C01,Harbour Legal Group,U04,Tom Okafor,Password reset request,True,closed
+T0006,C01,Harbour Legal Group,U03,Priya Nair,Laptop BSOD after dock firmware,True,open
+T0007,C01,Harbour Legal Group,U02,Maya Lin,"Veeam backup failed, NAS disk full",True,closed
+T0008,C01,Harbour Legal Group,U02,Maya Lin,DNS resolution failing at branch,True,closed
+T0009,C01,Harbour Legal Group,U03,Priya Nair,"Veeam backup failed, NAS disk full",True,closed
+T0010,C01,Harbour Legal Group,U04,Tom Okafor,RAID degraded on file server,True,closed
+T0011,C01,Harbour Legal Group,U04,Tom Okafor,Laptop BSOD after dock firmware,True,closed
+T0012,C02,Bayside Logistics Pty Ltd,U03,Priya Nair,User locked out of M365 after MFA reset,True,closed
+T0013,C02,Bayside Logistics Pty Ltd,U03,Priya Nair,New starter onboarding,True,closed
+T0014,C02,Bayside Logistics Pty Ltd,U02,Maya Lin,Firewall rule change for new supplier portal,True,open
+T0015,C02,Bayside Logistics Pty Ltd,U03,Priya Nair,RAID degraded on file server,False,closed
+T0016,C02,Bayside Logistics Pty Ltd,U02,Maya Lin,Password reset request,True,closed
+T0017,C02,Bayside Logistics Pty Ltd,U03,Priya Nair,Windows Update patch reboot loop,True,open
+T0018,C02,Bayside Logistics Pty Ltd,U01,Liam Vance,Teams calls dropping,True,closed
+T0019,C02,Bayside Logistics Pty Ltd,U04,Tom Okafor,New starter onboarding,True,closed
+T0020,C02,Bayside Logistics Pty Ltd,U01,Liam Vance,Laptop BSOD after dock firmware,True,closed
+T0021,C02,Bayside Logistics Pty Ltd,U01,Liam Vance,Outlook mailbox not syncing,True,closed
+T0022,C02,Bayside Logistics Pty Ltd,U01,Liam Vance,RAID degraded on file server,False,closed
+T0023,C02,Bayside Logistics Pty Ltd,U01,Liam Vance,Password reset request,True,closed
+T0024,C02,Bayside Logistics Pty Ltd,U01,Liam Vance,DNS resolution failing at branch,True,open
+T0025,C02,Bayside Logistics Pty Ltd,U01,Liam Vance,Laptop BSOD after dock firmware,True,open
+T0026,C02,Bayside Logistics Pty Ltd,U01,Liam Vance,Site-to-site VPN packet loss,True,open
+T0027,C02,Bayside Logistics Pty Ltd,U03,Priya Nair,RAID degraded on file server,True,closed
+T0028,C03,Canberra MedTech Clinic,U01,Liam Vance,Firewall rule change for new supplier portal,True,open
+T0029,C03,Canberra MedTech Clinic,U03,Priya Nair,Password reset request,True,closed
+T0030,C03,Canberra MedTech Clinic,U04,Tom Okafor,Password reset request,True,closed
+T0031,C03,Canberra MedTech Clinic,U02,Maya Lin,"Veeam backup failed, NAS disk full",True,open
+T0032,C03,Canberra MedTech Clinic,U01,Liam Vance,RAID degraded on file server,True,closed
+T0033,C03,Canberra MedTech Clinic,U04,Tom Okafor,RAID degraded on file server,False,closed
+T0034,C03,Canberra MedTech Clinic,U02,Maya Lin,Password reset request,False,closed
+T0035,C03,Canberra MedTech Clinic,U02,Maya Lin,Password reset request,False,open
+T0036,C03,Canberra MedTech Clinic,U02,Maya Lin,RAID degraded on file server,False,closed
+T0037,C03,Canberra MedTech Clinic,U02,Maya Lin,Windows Update patch reboot loop,True,closed
+T0038,C03,Canberra MedTech Clinic,U03,Priya Nair,Outlook mailbox not syncing,False,closed
+T0039,C03,Canberra MedTech Clinic,U03,Priya Nair,Firewall rule change for new supplier portal,False,closed
+T0040,C03,Canberra MedTech Clinic,U04,Tom Okafor,New starter onboarding,True,closed
+T0041,C03,Canberra MedTech Clinic,U02,Maya Lin,Laptop BSOD after dock firmware,True,open
+T0042,C04,Southern Cross Accounting,U04,Tom Okafor,New starter onboarding,True,open
+T0043,C04,Southern Cross Accounting,U02,Maya Lin,DNS resolution failing at branch,False,open
+T0044,C04,Southern Cross Accounting,U04,Tom Okafor,Phishing email reported by staff,True,closed
+T0045,C04,Southern Cross Accounting,U04,Tom Okafor,Windows Update patch reboot loop,True,closed
+T0046,C05,Ironbark Builders,U03,Priya Nair,Firewall rule change for new supplier portal,True,open
+T0047,C05,Ironbark Builders,U02,Maya Lin,Printer offline on level 2,True,closed
+T0048,C05,Ironbark Builders,U03,Priya Nair,RAID degraded on file server,True,closed
+T0049,C05,Ironbark Builders,U01,Liam Vance,Windows Update patch reboot loop,True,closed
+T0050,C05,Ironbark Builders,U04,Tom Okafor,Firewall rule change for new supplier portal,True,closed
+T0051,C05,Ironbark Builders,U02,Maya Lin,New starter onboarding,True,closed
+T0052,C05,Ironbark Builders,U01,Liam Vance,Printer offline on level 2,True,closed
+T0053,C05,Ironbark Builders,U03,Priya Nair,User locked out of M365 after MFA reset,True,closed
+T0054,C05,Ironbark Builders,U01,Liam Vance,"Veeam backup failed, NAS disk full",True,open
+T0055,C05,Ironbark Builders,U04,Tom Okafor,Teams calls dropping,True,closed
+T0056,C05,Ironbark Builders,U01,Liam Vance,Laptop BSOD after dock firmware,True,closed
+T0057,C05,Ironbark Builders,U04,Tom Okafor,New starter onboarding,True,open
+T0058,C06,Molonglo Dental Studio,U01,Liam Vance,New starter onboarding,True,closed
+T0059,C06,Molonglo Dental Studio,U04,Tom Okafor,Password reset request,True,open
+T0060,C06,Molonglo Dental Studio,U03,Priya Nair,Printer offline on level 2,True,closed
+T0061,C06,Molonglo Dental Studio,U01,Liam Vance,Laptop BSOD after dock firmware,True,closed
+T0062,C06,Molonglo Dental Studio,U03,Priya Nair,Outlook mailbox not syncing,True,open
+T0063,C07,Kestrel Freight Co,U01,Liam Vance,Windows Update patch reboot loop,True,closed
+T0064,C07,Kestrel Freight Co,U03,Priya Nair,Laptop BSOD after dock firmware,True,closed
+T0065,C07,Kestrel Freight Co,U03,Priya Nair,RAID degraded on file server,True,closed
+T0066,C07,Kestrel Freight Co,U02,Maya Lin,RAID degraded on file server,True,closed
+T0067,C07,Kestrel Freight Co,U03,Priya Nair,Laptop BSOD after dock firmware,True,open
+T0068,C07,Kestrel Freight Co,U02,Maya Lin,"Veeam backup failed, NAS disk full",True,closed
+T0069,C07,Kestrel Freight Co,U04,Tom Okafor,Windows Update patch reboot loop,True,open
+T0070,C07,Kestrel Freight Co,U01,Liam Vance,Phishing email reported by staff,True,open
+T0071,C07,Kestrel Freight Co,U03,Priya Nair,DNS resolution failing at branch,True,closed
+T0072,C07,Kestrel Freight Co,U01,Liam Vance,"Veeam backup failed, NAS disk full",True,open
+T0073,C07,Kestrel Freight Co,U02,Maya Lin,Phishing email reported by staff,True,closed
+T0074,C07,Kestrel Freight Co,U04,Tom Okafor,DNS resolution failing at branch,False,closed
+T0075,C07,Kestrel Freight Co,U03,Priya Nair,Teams calls dropping,True,closed
+T0076,C07,Kestrel Freight Co,U03,Priya Nair,Laptop BSOD after dock firmware,True,closed
+T0077,C07,Kestrel Freight Co,U03,Priya Nair,Password reset request,True,closed
+T0078,C07,Kestrel Freight Co,U01,Liam Vance,RAID degraded on file server,True,open
+T0079,C07,Kestrel Freight Co,U04,Tom Okafor,Printer offline on level 2,False,closed
+T0080,C07,Kestrel Freight Co,U04,Tom Okafor,Site-to-site VPN packet loss,True,open
+T0081,C07,Kestrel Freight Co,U04,Tom Okafor,Windows Update patch reboot loop,True,open
+T0082,C07,Kestrel Freight Co,U04,Tom Okafor,Phishing email reported by staff,False,closed
+T0083,C07,Kestrel Freight Co,U04,Tom Okafor,Phishing email reported by staff,False,closed
+T0084,C07,Kestrel Freight Co,U02,Maya Lin,Outlook mailbox not syncing,True,open
+T0085,C07,Kestrel Freight Co,U04,Tom Okafor,Laptop BSOD after dock firmware,False,closed
+T0086,C08,Wattle Grove Aged Care,U03,Priya Nair,"Veeam backup failed, NAS disk full",True,closed
+T0087,C08,Wattle Grove Aged Care,U01,Liam Vance,Firewall rule change for new supplier portal,False,closed
+T0088,C08,Wattle Grove Aged Care,U01,Liam Vance,Phishing email reported by staff,False,open
+T0089,C08,Wattle Grove Aged Care,U04,Tom Okafor,Phishing email reported by staff,True,closed
+T0090,C08,Wattle Grove Aged Care,U02,Maya Lin,Printer offline on level 2,False,open
+T0091,C08,Wattle Grove Aged Care,U02,Maya Lin,Password reset request,True,open
+T0092,C08,Wattle Grove Aged Care,U04,Tom Okafor,Password reset request,True,closed
+T0093,C08,Wattle Grove Aged Care,U02,Maya Lin,Printer offline on level 2,True,closed
+T0094,C08,Wattle Grove Aged Care,U04,Tom Okafor,Laptop BSOD after dock firmware,True,open
+T0095,C08,Wattle Grove Aged Care,U01,Liam Vance,Outlook mailbox not syncing,True,closed
+T0096,C08,Wattle Grove Aged Care,U04,Tom Okafor,Password reset request,True,closed
+T0097,C08,Wattle Grove Aged Care,U02,Maya Lin,Phishing email reported by staff,True,closed
+T0098,C08,Wattle Grove Aged Care,U01,Liam Vance,Site-to-site VPN packet loss,True,closed
+T0099,C08,Wattle Grove Aged Care,U04,Tom Okafor,Teams calls dropping,True,closed
+T0100,C08,Wattle Grove Aged Care,U01,Liam Vance,New starter onboarding,True,closed

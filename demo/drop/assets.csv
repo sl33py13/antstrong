@@ -1,0 +1,113 @@
+asset_id,company_id,company_name,hostname,os_supported,patch_compliant,warranty_days_left
+A0000,C01,Harbour Legal Group,HLG-PC-00,True,True,-20
+A0001,C01,Harbour Legal Group,HLG-PC-01,True,False,-220
+A0002,C01,Harbour Legal Group,HLG-PC-02,True,True,886
+A0003,C01,Harbour Legal Group,HLG-PC-03,True,True,304
+A0004,C01,Harbour Legal Group,HLG-PC-04,True,True,111
+A0005,C01,Harbour Legal Group,HLG-PC-05,True,True,449
+A0006,C01,Harbour Legal Group,HLG-PC-06,True,False,36
+A0007,C01,Harbour Legal Group,HLG-PC-07,True,False,686
+A0008,C01,Harbour Legal Group,HLG-PC-08,False,True,393
+A0009,C01,Harbour Legal Group,HLG-PC-09,True,True,-146
+A0010,C01,Harbour Legal Group,HLG-PC-10,True,False,513
+A0011,C02,Bayside Logistics Pty Ltd,BLP-PC-00,True,True,508
+A0012,C02,Bayside Logistics Pty Ltd,BLP-PC-01,True,True,631
+A0013,C02,Bayside Logistics Pty Ltd,BLP-PC-02,True,True,236
+A0014,C02,Bayside Logistics Pty Ltd,BLP-PC-03,True,False,460
+A0015,C02,Bayside Logistics Pty Ltd,BLP-PC-04,True,True,-249
+A0016,C02,Bayside Logistics Pty Ltd,BLP-PC-05,True,False,371
+A0017,C02,Bayside Logistics Pty Ltd,BLP-PC-06,False,True,-171
+A0018,C02,Bayside Logistics Pty Ltd,BLP-PC-07,True,True,318
+A0019,C02,Bayside Logistics Pty Ltd,BLP-PC-08,True,True,-208
+A0020,C02,Bayside Logistics Pty Ltd,BLP-PC-09,False,True,708
+A0021,C02,Bayside Logistics Pty Ltd,BLP-PC-10,True,True,800
+A0022,C02,Bayside Logistics Pty Ltd,BLP-PC-11,True,True,806
+A0023,C02,Bayside Logistics Pty Ltd,BLP-PC-12,True,True,16
+A0024,C02,Bayside Logistics Pty Ltd,BLP-PC-13,True,True,702
+A0025,C02,Bayside Logistics Pty Ltd,BLP-PC-14,True,False,272
+A0026,C02,Bayside Logistics Pty Ltd,BLP-PC-15,True,True,608
+A0027,C02,Bayside Logistics Pty Ltd,BLP-PC-16,True,True,442
+A0028,C02,Bayside Logistics Pty Ltd,BLP-PC-17,True,True,815
+A0029,C02,Bayside Logistics Pty Ltd,BLP-PC-18,False,True,-176
+A0030,C02,Bayside Logistics Pty Ltd,BLP-PC-19,True,True,-50
+A0031,C02,Bayside Logistics Pty Ltd,BLP-PC-20,False,False,-113
+A0032,C03,Canberra MedTech Clinic,CMC-PC-00,True,True,-257
+A0033,C03,Canberra MedTech Clinic,CMC-PC-01,True,True,-43
+A0034,C03,Canberra MedTech Clinic,CMC-PC-02,True,True,835
+A0035,C03,Canberra MedTech Clinic,CMC-PC-03,True,True,177
+A0036,C03,Canberra MedTech Clinic,CMC-PC-04,True,True,-295
+A0037,C03,Canberra MedTech Clinic,CMC-PC-05,True,False,-34
+A0038,C03,Canberra MedTech Clinic,CMC-PC-06,True,True,-75
+A0039,C03,Canberra MedTech Clinic,CMC-PC-07,True,True,-270
+A0040,C03,Canberra MedTech Clinic,CMC-PC-08,True,True,363
+A0041,C03,Canberra MedTech Clinic,CMC-PC-09,True,True,-41
+A0042,C03,Canberra MedTech Clinic,CMC-PC-10,True,True,-170
+A0043,C03,Canberra MedTech Clinic,CMC-PC-11,True,True,751
+A0044,C03,Canberra MedTech Clinic,CMC-PC-12,True,True,153
+A0045,C03,Canberra MedTech Clinic,CMC-PC-13,False,True,767
+A0046,C03,Canberra MedTech Clinic,CMC-PC-14,True,True,-237
+A0047,C03,Canberra MedTech Clinic,CMC-PC-15,True,True,522
+A0048,C03,Canberra MedTech Clinic,CMC-PC-16,True,True,608
+A0049,C03,Canberra MedTech Clinic,CMC-PC-17,True,True,3
+A0050,C04,Southern Cross Accounting,SCA-PC-00,True,True,898
+A0051,C04,Southern Cross Accounting,SCA-PC-01,True,True,786
+A0052,C04,Southern Cross Accounting,SCA-PC-02,True,True,581
+A0053,C04,Southern Cross Accounting,SCA-PC-03,True,True,829
+A0054,C04,Southern Cross Accounting,SCA-PC-04,True,True,624
+A0055,C04,Southern Cross Accounting,SCA-PC-05,True,True,628
+A0056,C04,Southern Cross Accounting,SCA-PC-06,True,True,340
+A0057,C04,Southern Cross Accounting,SCA-PC-07,True,True,466
+A0058,C04,Southern Cross Accounting,SCA-PC-08,False,True,671
+A0059,C05,Ironbark Builders,IB-PC-00,True,True,584
+A0060,C05,Ironbark Builders,IB-PC-01,True,True,-34
+A0061,C05,Ironbark Builders,IB-PC-02,True,True,850
+A0062,C05,Ironbark Builders,IB-PC-03,True,True,541
+A0063,C05,Ironbark Builders,IB-PC-04,True,True,566
+A0064,C05,Ironbark Builders,IB-PC-05,True,True,289
+A0065,C05,Ironbark Builders,IB-PC-06,True,True,883
+A0066,C05,Ironbark Builders,IB-PC-07,True,True,687
+A0067,C05,Ironbark Builders,IB-PC-08,True,True,839
+A0068,C06,Molonglo Dental Studio,MDS-PC-00,True,True,163
+A0069,C06,Molonglo Dental Studio,MDS-PC-01,True,False,840
+A0070,C06,Molonglo Dental Studio,MDS-PC-02,True,False,247
+A0071,C06,Molonglo Dental Studio,MDS-PC-03,True,True,332
+A0072,C06,Molonglo Dental Studio,MDS-PC-04,False,True,71
+A0073,C06,Molonglo Dental Studio,MDS-PC-05,True,True,520
+A0074,C06,Molonglo Dental Studio,MDS-PC-06,True,True,-238
+A0075,C06,Molonglo Dental Studio,MDS-PC-07,True,True,470
+A0076,C06,Molonglo Dental Studio,MDS-PC-08,True,True,457
+A0077,C06,Molonglo Dental Studio,MDS-PC-09,True,True,862
+A0078,C06,Molonglo Dental Studio,MDS-PC-10,True,False,18
+A0079,C06,Molonglo Dental Studio,MDS-PC-11,True,True,-133
+A0080,C06,Molonglo Dental Studio,MDS-PC-12,True,True,694
+A0081,C07,Kestrel Freight Co,KFC-PC-00,True,True,749
+A0082,C07,Kestrel Freight Co,KFC-PC-01,True,True,280
+A0083,C07,Kestrel Freight Co,KFC-PC-02,True,True,779
+A0084,C07,Kestrel Freight Co,KFC-PC-03,True,True,509
+A0085,C07,Kestrel Freight Co,KFC-PC-04,False,True,118
+A0086,C07,Kestrel Freight Co,KFC-PC-05,True,True,-19
+A0087,C07,Kestrel Freight Co,KFC-PC-06,True,True,-55
+A0088,C07,Kestrel Freight Co,KFC-PC-07,True,True,59
+A0089,C07,Kestrel Freight Co,KFC-PC-08,True,True,171
+A0090,C07,Kestrel Freight Co,KFC-PC-09,True,False,425
+A0091,C07,Kestrel Freight Co,KFC-PC-10,True,False,-214
+A0092,C07,Kestrel Freight Co,KFC-PC-11,True,True,-141
+A0093,C07,Kestrel Freight Co,KFC-PC-12,True,True,874
+A0094,C07,Kestrel Freight Co,KFC-PC-13,True,True,292
+A0095,C07,Kestrel Freight Co,KFC-PC-14,True,True,365
+A0096,C07,Kestrel Freight Co,KFC-PC-15,True,False,642
+A0097,C07,Kestrel Freight Co,KFC-PC-16,True,False,-120
+A0098,C08,Wattle Grove Aged Care,WGA-PC-00,True,True,520
+A0099,C08,Wattle Grove Aged Care,WGA-PC-01,True,True,335
+A0100,C08,Wattle Grove Aged Care,WGA-PC-02,True,True,44
+A0101,C08,Wattle Grove Aged Care,WGA-PC-03,True,True,786
+A0102,C08,Wattle Grove Aged Care,WGA-PC-04,True,False,415
+A0103,C08,Wattle Grove Aged Care,WGA-PC-05,True,False,2
+A0104,C08,Wattle Grove Aged Care,WGA-PC-06,True,True,104
+A0105,C08,Wattle Grove Aged Care,WGA-PC-07,True,True,-146
+A0106,C08,Wattle Grove Aged Care,WGA-PC-08,True,True,711
+A0107,C08,Wattle Grove Aged Care,WGA-PC-09,True,True,886
+A0108,C08,Wattle Grove Aged Care,WGA-PC-10,True,False,856
+A0109,C08,Wattle Grove Aged Care,WGA-PC-11,True,False,361
+A0110,C08,Wattle Grove Aged Care,WGA-PC-12,True,True,9
+A0111,C08,Wattle Grove Aged Care,WGA-PC-13,True,True,320
