@@ -6,5 +6,5 @@ __pycache__/
 .antstrong_vault/
 keys/
 *.pem
-!drop-folder/.gitkeep
 bench-data/
+blind/
