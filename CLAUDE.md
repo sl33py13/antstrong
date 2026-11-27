@@ -17,6 +17,15 @@ Claude acts as CTO/COO for Ben, who is the CEO. Mandate: build and commercialise
 - **Trade marks (Ben lodging himself):** antSTRONG word mark in Classes 9 and 42 via IP Australia TM Headstart, in his own name. ZLI is optional, Class 42 only. "Zero-Leak Intelligence" in full is likely too descriptive to register.
 - **Secondary employment:** Ben is an APS employee and should check his agency's outside employment policy and tell his manager before taking payment.
 
+## Product direction (decided by Ben, 27 Nov 2026)
+antSTRONG is decision intelligence for MSP management, not a profit dashboard. Plain stats are table stakes. The core value is the engine finding non-obvious patterns (e.g. "units on firmware X, 15 to 25 km out, in one district fail 3x more") and turning them into decisions with dollar impact and a confidence level. Pattern finding must be proven against synthetic data with planted, known patterns before ANY performance or capability claim is published.
+
+Design principles:
+- Pattern finding runs locally on full-detail data. Anonymisation only constrains what leaves the machine.
+- Columns are classified automatically (identity / revealing / safe / never send) by profiling names and values; uncertain columns default to the safe side and are shown for review; built-in profiles for common PSA exports. No manual labelling of thousands of columns.
+- Revealing attributes (location, distance, dates) are bucketed, and any outbound group smaller than a minimum size (about 5) is rolled up or suppressed.
+- Findings must be statistically defensible: support, effect size, correction for testing many combinations, and honest "possible" vs "strong" wording. Correlation is not presented as cause.
+
 ## Status (27 Nov 2026)
 Pre-launch, no customers. Built: CSV ingestion, `LocalKeyVault`, scrubber and outbound gate, profit and SLA analytics, local dashboard (`agent/server.py`), offline Ed25519 licensing with tests (31 passing).
 
@@ -29,8 +38,11 @@ Not built yet: landing page and sandbox; trial sign-up and download flow; finish
 2. DONE: keypair generated 27 Nov 2026. Public key embedded in `agent/license_guard.py`. Private key lives only on Ben's PC at `D:\GeminiSpace\antSTRONG\keys\` (gitignored) and must be backed up offline.
 3. Benchmark: DONE 27 Nov 2026. 652,000 synthetic records (2,000 clients) took 8.2 to 8.7s end to end on a 2-core cloud machine, after fixing a privacy-gate slowdown (it was over 10 minutes: the gate searched the whole payload once per known name). Re-run on Ben's PC with `python -m tools.make_benchmark_data bench-data` then `python -m tools.benchmark bench-data` before publishing any speed figure. Until then the landing page says "hundreds of thousands of records in seconds".
 3b. Demo: DONE 27 Nov 2026. `demo/index.html` is the real dashboard with the real engine's output for a fictional 8-client MSP (`demo/drop/`, made by `tools/make_demo_data.py`). Published privately as an artifact: https://claude.ai/artifact/S9a37QR8fzvf1W3xH8A3Fv (Ben shares it when ready).
-3c. Next: landing page that embeds or links the demo, with only true claims.
-4. Finish the email and launch copy.
+4. NEXT (priority): synthetic MSP "world" generator: many tables, messy column names, realistic noise, PLANTED patterns with a ground-truth file, plus decoys that look meaningful but are not.
+5. Pattern engine: subgroup discovery over attribute combinations, trend and change detection, cost drivers; ranked by dollar impact; scored against the ground truth (finds the planted patterns, does not report the decoys).
+6. Automatic column classifier with review list; tested on the messy schema.
+7. Executive report: findings, impact, confidence, recommended action; names re-attached locally.
+8. Performance at scale on the full pipeline, then the landing page and copy with only proven claims.
 
 ## Working on this project
 Run tests with `python -m pytest -q`. Project files live on Ben's PC at `D:\GeminiSpace\antSTRONG`; this repo is the shared copy.
