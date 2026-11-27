@@ -76,11 +76,12 @@ Reply with the complete script in a single ```python code block and nothing else
 ADDENDA = {
     "ops": """Focus: device and infrastructure patterns. Include network devices with firmware versions, models, install dates, site locations with distance from the client's head office, and ISP or link type. Patterns should resemble "devices of model X on firmware Y at sites more than Z km away fail far more often", plus technician- and client-level effects.""",
     "schema": """Focus: schema messiness. Use 40+ tables in total (many irrelevant), cryptic or inconsistent column names (e.g. "cust_nm", "CLIENT", "acct_ref2"), wide tables with 60+ columns, and personal information hidden in unexpected places (an email address inside a notes field, a phone number in a "ref" column, staff names inside ticket summaries). Plant fewer patterns (minimum 4), but make them span 3 or more joined tables.""",
+    "combined": """Focus: all of the following at once, in one dataset. (1) Device and infrastructure patterns: network devices with firmware versions, models, install dates, site distance from head office, ISP or link type. (2) Schema messiness: 25+ tables, cryptic or inconsistent column names, a few wide tables, and personal information hidden in unexpected places such as notes fields. (3) Statistical traps: a Simpson's paradox, a confounder, an effect that starts on a specific date, a seasonal effect that mimics a real problem, and small groups with extreme rates purely by chance. The real patterns and the traps must overlap in the same tables, so a naive analysis of the messy schema falls for the traps.""",
     "traps": """Focus: traps that fool naive analysis. Include a Simpson's paradox (an effect that reverses when split by a third variable), a confounder (two things correlated only because both depend on a hidden third), an effect that begins at a specific date (e.g. after a firmware rollout or a staff change), a seasonal effect that mimics a real problem, and small groups with extreme rates purely by chance. Every trap must be explained in the answer key.""",
 }
 
 # Which AI writes which exam. Two different companies, three different jobs.
-JOBS = [("gemini", "ops"), ("openai", "schema"), ("gemini", "traps")]
+JOBS = [("gemini", "ops"), ("openai", "schema"), ("gemini", "traps"), ("openai", "combined")]
 
 # ---------------------------------------------------------------------------
 # Safety check for AI-written scripts
