@@ -1,0 +1,5 @@
+asset_id,company_id,company_name,hostname,os_supported,patch_compliant,warranty_days_left
+A01,C01,Harbour Legal Group,HLG-SRV-01,true,true,420
+A02,C01,Harbour Legal Group,HLG-LAP-02,true,true,95
+A03,C02,Bayside Logistics,BAY-PC-14,false,false,-42
+A04,C03,Northstar Health,NSH-FW-01,true,true,180

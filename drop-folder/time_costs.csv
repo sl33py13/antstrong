@@ -1,0 +1,4 @@
+﻿entry_id,company_id,company_name,tech_id,tech_name,hours,hourly_cost,billable
+E01,C01,Harbour Legal Group,U01,Liam Vance,11.5,65.00,true
+E02,C02,Bayside Logistics Pty Ltd,U02,Maya Lin,29.0,62.00,false
+E03,C03,Canberra MedTech Clinic,U01,Liam Vance,14.0,65.00,true

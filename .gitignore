@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+# Never commit secrets (drop-folder holds synthetic sample data only: keep real client exports elsewhere)
+.antstrong_vault/
+keys/
+*.pem
+!drop-folder/.gitkeep

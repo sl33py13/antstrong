@@ -1,0 +1,5 @@
+﻿ticket_id,company_id,company_name,tech_id,tech_name,summary,sla_met,status
+T101,C01,Harbour Legal Group,U01,Liam Vance,User locked out of M365 Outlook after MFA reset,true,closed
+T102,C02,Bayside Logistics Pty Ltd,U02,Maya Lin,Site-to-site VPN packet loss on 203.0.113.45,false,open
+T103,C02,Bayside Logistics Pty Ltd,U02,Maya Lin,Veeam backup job failed due to NAS disk full,false,open
+T104,C03,Canberra MedTech Clinic,U01,Liam Vance,Monthly Windows Update patch reboot completed,true,closed
