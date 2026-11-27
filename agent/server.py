@@ -1,15 +1,52 @@
 import os
+from dataclasses import asdict
+from pathlib import Path
+
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import HTMLResponse, JSONResponse
+from pydantic import BaseModel
+
 from agent.ingest import process_drop_folder
+from agent.license_guard import LicenseStatus, LicenseStore
 from agent.analytics import compute_kpis
 from agent.vault import LocalKeyVault
 from agent.scrubber import PrivacyViolationError
 
 DROP_DIR = os.environ.get("ANTSTRONG_DROP_DIR", "drop-folder")
 VAULT_DIR = os.environ.get("ANTSTRONG_VAULT_DIR", ".antstrong_vault")
+LICENSE_DIR = os.environ.get("ANTSTRONG_LICENSE_DIR", VAULT_DIR)
+HOST = "127.0.0.1"  # local-only by design: the dashboard shows real client names
+PORT = int(os.environ.get("ANTSTRONG_PORT", "8765"))
 
 app = FastAPI(title="antSTRONG Local Agent & Dashboard", version="0.1.0")
+
+
+class LicenseInstallRequest(BaseModel):
+    certificate: str
+
+
+def _license_store() -> LicenseStore:
+    return LicenseStore(Path(LICENSE_DIR))
+
+
+def _require_license() -> LicenseStatus:
+    status = _license_store().status()
+    if not status.valid:
+        raise HTTPException(status_code=402, detail={"license": asdict(status)})
+    return status
+
+
+@app.get("/api/license")
+def get_license():
+    return asdict(_license_store().status())
+
+
+@app.post("/api/license")
+def install_license(req: LicenseInstallRequest):
+    status = _license_store().install(req.certificate)
+    if not status.valid:
+        raise HTTPException(status_code=400, detail={"license": asdict(status)})
+    return asdict(status)
 
 
 def _run_pipeline():
@@ -23,6 +60,7 @@ def _run_pipeline():
 @app.get("/api/cloud-payload")
 def get_cloud_payload():
     """Returns strictly the zero-PII tokenized payload that goes to the cloud."""
+    _require_license()
     try:
         payload, _, _ = _run_pipeline()
         return JSONResponse(content=payload)
@@ -33,9 +71,11 @@ def get_cloud_payload():
 @app.get("/api/dashboard-data")
 def get_dashboard_data():
     """Returns KPI analytics + local-only rehydration map (never sent to cloud)."""
+    license_status = _require_license()
     try:
         payload, kpis, rehydration_map = _run_pipeline()
         return JSONResponse(content={
+            "license": asdict(license_status),
             "kpis": kpis,
             "rehydration_map": rehydration_map,
             "outbound_payload_preview": payload,
@@ -89,6 +129,10 @@ def dashboard_ui():
     tr:last-child td { border-bottom: none; }
     .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.85rem; }
     pre { background: #090d16; border: 1px solid var(--border); border-radius: 10px; padding: 16px; overflow-x: auto; font-size: 0.82rem; color: #cbd5e1; max-height: 320px; }
+    .license-panel { background: var(--card); border: 1px solid var(--amber); border-radius: 12px; padding: 20px; margin-bottom: 24px; }
+    .license-panel textarea { width: 100%; min-height: 140px; background: #090d16; color: var(--text); border: 1px solid var(--border); border-radius: 8px; padding: 10px; font-family: ui-monospace, Menlo, monospace; font-size: 0.8rem; }
+    .license-panel p { color: var(--muted); margin: 6px 0 12px; }
+    .hidden { display: none; }
     .split { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
     @media (max-width: 820px) { .split { grid-template-columns: 1fr; } }
   </style>
@@ -101,12 +145,25 @@ def dashboard_ui():
         <p>Zero-Exposure MSP Profitability, Compliance & Fleet Intelligence</p>
       </div>
       <div class="controls">
+        <span class="badge" id="license-badge">LICENSE: CHECKING</span>
         <span class="badge" id="gate-status">PRIVACY GATE: PASSED (0 PII)</span>
+        <button class="toggle-btn" onclick="showLicensePanel(true)">License</button>
         <button class="toggle-btn" id="view-toggle" onclick="toggleView()">View: Local Re-Hydrated (Real Names)</button>
         <button class="toggle-btn" onclick="loadDashboard()">Refresh CSVs</button>
       </div>
     </header>
 
+    <div class="license-panel hidden" id="license-panel">
+      <h2>License</h2>
+      <p id="license-message">Paste your trial or license certificate below, including the BEGIN and END lines.</p>
+      <textarea id="license-input" placeholder="-----BEGIN ANTSTRONG LICENSE-----"></textarea>
+      <div style="margin-top:12px; display:flex; gap:12px;">
+        <button class="toggle-btn" onclick="activateLicense()">Activate</button>
+        <button class="toggle-btn" id="license-close" onclick="showLicensePanel(false)">Close</button>
+      </div>
+    </div>
+
+    <div id="dashboard-body">
     <div class="grid" id="kpi-cards"></div>
 
     <h2>Agreement Profitability & Effective Hourly Rate</h2>
@@ -136,11 +193,50 @@ def dashboard_ui():
         <pre id="cloud-json">Loading...</pre>
       </div>
     </div>
+    </div>
   </div>
 
   <script>
     let cloudOnlyMode = false;
     let cachedData = null;
+
+    function esc(v) {
+      return String(v).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+    }
+
+    function showLicensePanel(show, message) {
+      document.getElementById("license-panel").classList.toggle("hidden", !show);
+      if (message) document.getElementById("license-message").textContent = message;
+    }
+
+    function setLicenseBadge(lic) {
+      const b = document.getElementById("license-badge");
+      if (lic && lic.valid) {
+        const label = lic.mode === "licensed" ? lic.tier.toUpperCase() : "TRIAL";
+        b.textContent = `${label}: ${lic.days_remaining} DAY(S) LEFT`;
+        b.style.color = lic.days_remaining <= 3 ? "var(--amber)" : "var(--green)";
+      } else {
+        b.textContent = "NOT LICENSED";
+        b.style.color = "var(--red)";
+      }
+    }
+
+    async function activateLicense() {
+      const certificate = document.getElementById("license-input").value;
+      const res = await fetch("/api/license", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ certificate })
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        showLicensePanel(true, "That certificate was not accepted: " + data.detail.license.reason);
+        return;
+      }
+      document.getElementById("license-input").value = "";
+      showLicensePanel(false);
+      loadDashboard();
+    }
 
     function fmtMoney(n) {
       return "$" + Number(n).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -182,7 +278,7 @@ def dashboard_ui():
         const profitClass = c.net_profit >= 0 ? "pos" : "neg";
         return `
           <tr>
-            <td class="${cloudOnlyMode ? 'mono' : ''}"><strong>${displayName}</strong></td>
+            <td class="${cloudOnlyMode ? 'mono' : ''}"><strong>${esc(displayName)}</strong></td>
             <td>${fmtMoney(c.mrr)}</td>
             <td>${fmtMoney(c.stack_cost)}</td>
             <td>${fmtMoney(c.labor_cost)}</td>
@@ -205,6 +301,13 @@ def dashboard_ui():
 
     async function loadDashboard() {
       const res = await fetch("/api/dashboard-data");
+      if (res.status === 402) {
+        const err = await res.json();
+        setLicenseBadge(err.detail.license);
+        document.getElementById("dashboard-body").classList.add("hidden");
+        showLicensePanel(true, err.detail.license.reason);
+        return;
+      }
       if (!res.ok) {
         const err = await res.json();
         document.getElementById("gate-status").textContent = "PRIVACY GATE BLOCKED!";
@@ -213,6 +316,8 @@ def dashboard_ui():
         return;
       }
       cachedData = await res.json();
+      setLicenseBadge(cachedData.license);
+      document.getElementById("dashboard-body").classList.remove("hidden");
       render();
     }
 
@@ -221,3 +326,10 @@ def dashboard_ui():
 </body>
 </html>
 """
+
+
+if __name__ == "__main__":
+    import uvicorn
+
+    print(f"antSTRONG dashboard: http://{HOST}:{PORT}")
+    uvicorn.run(app, host=HOST, port=PORT)

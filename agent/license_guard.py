@@ -26,7 +26,7 @@ from pathlib import Path
 from cryptography.exceptions import InvalidSignature
 from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PublicKey
 
-PUBLIC_KEY_B64 = "REPLACE_WITH_YOUR_32_BYTE_ED25519_PUBLIC_KEY_B64="
+PUBLIC_KEY_B64 = "ffrQd7sfVeJVsQuhfE6zys8aedPdL19H8g3FnX7S+Ww="
 
 HEADER = "-----BEGIN ANTSTRONG LICENSE-----"
 FOOTER = "-----END ANTSTRONG LICENSE-----"

@@ -22,11 +22,11 @@ Pre-launch, no customers. Built: CSV ingestion, `LocalKeyVault`, scrubber and ou
 
 Fixed this session: one client getting different tokens across files; vault never saved after ingest; trial could be reset by deleting a local file.
 
-Not built yet: licence check wired into the server and a Settings -> License page; real signing keypair and public key embedded; landing page and sandbox; trial sign-up and download flow; finished emails and launch posts; Windows/Linux packaging; connectors for ConnectWise, Autotask, HaloPSA, Syncro (the landing copy mentions them, so do not publish that claim until it is true); the performance claims (650,000 records in 3.84s) have not been measured.
+Not built yet: landing page and sandbox; trial sign-up and download flow; finished emails and launch posts; Windows/Linux packaging; connectors for ConnectWise, Autotask, HaloPSA, Syncro (the landing copy mentions them, so do not publish that claim until it is true); the performance claims (650,000 records in 3.84s) have not been measured.
 
 ## Next steps, in order
-1. Wire licence checks into `agent/server.py` and build the License settings page. Bind the server to 127.0.0.1 only.
-2. Generate the keypair (`python -m tools.generate_license keygen --out keys`), embed the public key, keep the private key out of the repo.
+1. DONE: licence checks wired into `agent/server.py` (402 until a valid certificate), License panel, bound to 127.0.0.1:8765. Run with `python -m agent.server`.
+2. DONE: keypair generated 27 Nov 2026. Public key embedded in `agent/license_guard.py`. Private key lives only on Ben's PC at `D:\GeminiSpace\antSTRONG\keys\` (gitignored) and must be backed up offline.
 3. Benchmark real performance, then build the landing page and demo with only claims that are true.
 4. Finish the email and launch copy.
 
