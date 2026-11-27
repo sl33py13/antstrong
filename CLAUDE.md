@@ -22,12 +22,13 @@ Pre-launch, no customers. Built: CSV ingestion, `LocalKeyVault`, scrubber and ou
 
 Fixed this session: one client getting different tokens across files; vault never saved after ingest; trial could be reset by deleting a local file.
 
-Not built yet: landing page and sandbox; trial sign-up and download flow; finished emails and launch posts; Windows/Linux packaging; connectors for ConnectWise, Autotask, HaloPSA, Syncro (the landing copy mentions them, so do not publish that claim until it is true); the performance claims (650,000 records in 3.84s) have not been measured.
+Not built yet: landing page and sandbox; trial sign-up and download flow; finished emails and launch posts; Windows/Linux packaging; connectors for ConnectWise, Autotask, HaloPSA, Syncro (the landing copy mentions them, so do not publish that claim until it is true); the "3.84s" claim is not proven (see benchmark below).
 
 ## Next steps, in order
 1. DONE: licence checks wired into `agent/server.py` (402 until a valid certificate), License panel, bound to 127.0.0.1:8765. Run with `python -m agent.server`.
 2. DONE: keypair generated 27 Nov 2026. Public key embedded in `agent/license_guard.py`. Private key lives only on Ben's PC at `D:\GeminiSpace\antSTRONG\keys\` (gitignored) and must be backed up offline.
-3. Benchmark real performance, then build the landing page and demo with only claims that are true.
+3. Benchmark: DONE 27 Nov 2026. 652,000 synthetic records (2,000 clients) took 8.2 to 8.7s end to end on a 2-core cloud machine, after fixing a privacy-gate slowdown (it was over 10 minutes: the gate searched the whole payload once per known name). Re-run on Ben's PC with `python -m tools.make_benchmark_data bench-data` then `python -m tools.benchmark bench-data` before publishing any speed figure. Until then the landing page says "hundreds of thousands of records in seconds".
+3b. Next: build the landing page and demo with only claims that are true.
 4. Finish the email and launch copy.
 
 ## Working on this project

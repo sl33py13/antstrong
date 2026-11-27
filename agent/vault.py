@@ -17,6 +17,8 @@ class LocalKeyVault:
         self._cipher = Fernet(self._load_or_create_key())
         self._salt = self._load_or_create_salt()
         self._lookup: dict[str, dict[str, str]] = self._load_vault()
+        self._alias_set: set[str] = set(self._lookup["_aliases"])
+        self._token_cache: dict[tuple[str, str], str] = {}
 
     def _load_or_create_key(self) -> bytes:
         if self.key_file.exists():
@@ -56,16 +58,21 @@ class LocalKeyVault:
         # The token comes from the source system's ID only. Different exports often
         # spell the same client differently ("Bayside Logistics" vs "Bayside
         # Logistics Pty Ltd"); keying on the name split one client into several tokens.
-        clean_key = f"{category}::{raw_id.strip()}"
-        digest = hmac.new(self._salt, clean_key.encode("utf-8"), hashlib.sha256).hexdigest()[:10]
-        token = f"{prefixes[category]}_{digest}"
+        cache_key = (category, raw_id.strip())
+        token = self._token_cache.get(cache_key)
+        if token is None:
+            clean_key = f"{category}::{raw_id.strip()}"
+            digest = hmac.new(self._salt, clean_key.encode("utf-8"), hashlib.sha256).hexdigest()[:10]
+            token = f"{prefixes[category]}_{digest}"
+            self._token_cache[cache_key] = token
 
         name = display_name.strip()
         if name:
             # First non-empty name wins for re-hydration; every spelling is kept so
             # the outbound gate can block all of them.
             self._lookup[category].setdefault(token, name)
-            if name not in self._lookup["_aliases"]:
+            if name not in self._alias_set:
+                self._alias_set.add(name)
                 self._lookup["_aliases"].append(name)
         else:
             self._lookup[category].setdefault(token, raw_id.strip())
@@ -81,4 +88,4 @@ class LocalKeyVault:
 
     def get_all_real_names(self) -> set[str]:
         """Every real name or spelling ever seen, for the outbound privacy gate."""
-        return set(self.get_rehydration_map().values()) | set(self._lookup["_aliases"])
+        return set(self.get_rehydration_map().values()) | self._alias_set
