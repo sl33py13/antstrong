@@ -297,8 +297,14 @@ def run_job(provider: Provider, job: str, run_id: str, size: str, seed: int, pri
             reply = provider.chat(messages)
         except Exception as exc:  # noqa: BLE001
             msg = str(exc)
-            model_missing = any(t in msg.lower() for t in ("404", "not found", "does not exist", "model_not_found", "invalid model"))
-            fallback = pick_fallback_model(provider.name, provider.available_models()) if model_missing else None
+            low = msg.lower()
+            model_missing = any(t in low for t in ("404", "not found", "does not exist", "model_not_found", "invalid model"))
+            # Gemini free tier: Pro models have a quota of 0, so fall back to Flash, which is included.
+            free_tier_blocked = provider.name == "gemini" and "429" in msg and "limit: 0" in low
+            if free_tier_blocked:
+                fallback = "gemini-flash-latest"
+            else:
+                fallback = pick_fallback_model(provider.name, provider.available_models()) if model_missing else None
             if fallback and fallback != provider.model:
                 print(f"[{tag}] model {provider.model} is not available on your key; using {fallback} instead.")
                 provider.model = fallback
@@ -356,7 +362,7 @@ def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description="Run a blind exam: other AIs generate test data with hidden answer keys.")
     ap.add_argument("--size", choices=["small", "large"], default="large")
     ap.add_argument("--seed", type=int, default=None, help="Defaults to a new random seed each run.")
-    ap.add_argument("--only", choices=[f"{p}_{j}" for p, j in JOBS], help="Run one exam only.")
+    ap.add_argument("--only", help="Comma-separated exams to run, e.g. gemini_ops,openai_combined")
     args = ap.parse_args(argv)
 
     settings = load_settings(PRIVATE_ROOT)
@@ -378,7 +384,7 @@ def main(argv: list[str] | None = None) -> int:
 
     results = []
     for prov_name, job in JOBS:
-        if args.only and args.only != f"{prov_name}_{job}":
+        if args.only and f"{prov_name}_{job}" not in {x.strip() for x in args.only.split(",")}:
             continue
         if prov_name not in providers:
             results.append({"job": f"{prov_name}_{job}", "ok": False, "error": f"No {prov_name.upper()} key in keys.env"})

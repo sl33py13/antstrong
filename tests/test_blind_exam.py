@@ -124,3 +124,17 @@ def test_missing_model_switches_automatically(tmp_path):
     fake = Flaky([GOOD]); fake.model = "gone"
     r = be.run_job(fake, "ops", "r1", "small", 1, priv, data)
     assert r["ok"] and r["model"] == "gpt-6.2-sol"
+
+
+def test_gemini_free_tier_falls_back_to_flash(tmp_path):
+    priv, data = _dirs(tmp_path)
+
+    class FreeTier(FakeProvider):
+        def chat(self, messages):
+            if self.model == "gemini-pro-latest":
+                raise RuntimeError("HTTP 429: Quota exceeded for metric: free_tier_requests, limit: 0, model: gemini-3.1-pro")
+            return super().chat(messages)
+
+    fake = FreeTier([GOOD]); fake.name = "gemini"; fake.model = "gemini-pro-latest"
+    r = be.run_job(fake, "ops", "r1", "small", 1, priv, data)
+    assert r["ok"] and r["model"] == "gemini-flash-latest"
